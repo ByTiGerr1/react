@@ -1,7 +1,7 @@
+import GestorEntradas from './containers/GestorEntradas';
 
 function App() {
-  return <h1>Hello World!</h1>
-
+  return <GestorEntradas />;
 }
 
-export default App
+export default App;
