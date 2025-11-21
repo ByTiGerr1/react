@@ -7,7 +7,7 @@ import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import { agregarMedicion } from "../services/medicionesService";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const opcionesMedidor = Array.from({ length: 10 }, (_, indice) => {
   const valor = (indice + 1).toString().padStart(2, "0");
@@ -45,7 +45,6 @@ export default function RegistrarLectura() {
     valor: null,
     tipo: null,
   });
-  const [redirigir, setRedirigir] = useState(false);
 
   const actualizarCampo = (campo, valor) => {
     setDatos((previo) => ({ ...previo, [campo]: valor }));
@@ -78,7 +77,7 @@ export default function RegistrarLectura() {
 
     const { fechaTexto, horaTexto } = formatearFechaHora(datos.fechaHora);
     const nuevaMedicion = {
-      id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+      id: Date.now().toString(),
       fecha: fechaTexto,
       hora: horaTexto,
       medidor: datos.medidor,
@@ -89,13 +88,8 @@ export default function RegistrarLectura() {
     };
 
     agregarMedicion(nuevaMedicion);
-    setRedirigir(true);
     navigate("/mediciones");
   };
-
-  if (redirigir) {
-    return <Navigate to="/mediciones" />;
-  }
 
   return (
     <div className="page">
