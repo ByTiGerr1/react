@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "react-router-dom": resolve(__dirname, "src/vendor/simple-router.jsx"),
+      "react-router-dom": resolve(__dirname, "src/vendor/simpleRouter.jsx"),
     },
   },
 });

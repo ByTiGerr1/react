@@ -2,12 +2,7 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 
-const integrantes = [
-  "Daniela Ríos",
-  "Marcos Ramírez",
-  "Valeria Soto",
-  "Juan Herrera",
-];
+const integrantes = ["Alonso Sanchez"];
 
 export default function Home() {
   return (
