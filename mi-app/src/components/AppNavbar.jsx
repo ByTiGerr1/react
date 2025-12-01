@@ -1,11 +1,10 @@
 import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const items = [
   { label: "Inicio", icon: "pi pi-home", path: "/" },
-  { label: "Registrar Lectura", icon: "pi pi-pencil", path: "/registrar" },
-  { label: "Mediciones Existentes", icon: "pi pi-table", path: "/mediciones" },
+  { label: "Implementación", icon: "pi pi-code", path: "/implementacion" },
 ];
 
 export default function AppNavbar() {
@@ -14,16 +13,25 @@ export default function AppNavbar() {
 
   const model = items.map((item) => ({
     ...item,
-    command: () => navigate(item.path),
-    className: location.pathname === item.path ? "p-menuitem-active" : "",
+    template: (_menuItem, options) => (
+      <Link
+        className={`${options.className} ${
+          location.pathname === item.path ? "active" : ""
+        }`}
+        to={item.path}
+      >
+        <span className={`p-menuitem-icon ${item.icon}`} />
+        <span className="p-menuitem-text">{item.label}</span>
+      </Link>
+    ),
   }));
 
-  const start = <span className="font-bold text-xl">Sanquinta</span>;
+  const start = <span className="font-bold text-xl">API Explorer</span>;
   const end = (
     <div className="flex align-items-center gap-2">
       <Button
         icon="pi pi-home"
-        label="Ir al inicio"
+        label="Volver al inicio"
         severity="info"
         onClick={() => navigate("/")}
       />

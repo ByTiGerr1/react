@@ -1,21 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppNavbar from "./components/AppNavbar";
 import Home from "./pages/Home";
-import RegistrarLectura from "./pages/RegistrarLectura";
-import Mediciones from "./pages/Mediciones";
+import Implementacion from "./pages/Implementacion";
+import { ApiDataProvider } from "./providers/ApiDataProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="layout">
-        <AppNavbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/registrar" element={<RegistrarLectura />} />
-          <Route path="/mediciones" element={<Mediciones />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </div>
+      <ApiDataProvider>
+        <div className="app-shell">
+          <AppNavbar />
+          <main className="content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/implementacion" element={<Implementacion />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </main>
+        </div>
+      </ApiDataProvider>
     </BrowserRouter>
   );
 }

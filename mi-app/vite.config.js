@@ -1,8 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import vitePluginSaas from "vite-plugin-sass";
+import { resolve } from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), vitePluginSaas()],
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "react-router-dom": resolve(__dirname, "src/vendor/simple-router.jsx"),
+    },
+  },
 });
